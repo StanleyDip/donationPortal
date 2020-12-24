@@ -1,0 +1,78 @@
+<?php
+$dbserverName = "localhost";
+$dbuserName = "root";
+$dbpassword = "";
+$dbname = "donation";
+
+$conn = mysqli_connect( $dbserverName , $dbuserName , $dbpassword , $dbname );
+
+	include 'header.php';
+
+
+$sql="Select * FROM person";
+$records=mysqli_query($conn ,$sql);
+?>
+
+<section class="main-container">
+	<div class="main-wrapper">
+		<h2>Home</h2>
+		<?php
+			if (isset($_SESSION['Person_Userid'])) {
+				//echo "you are logged in!";
+				echo "<table>";
+				echo "<caption><B>Reciever List</B></caption>";
+	echo"<tr>";
+		
+		echo"<th>Person ID</th>";
+		echo"<th>User ID</th>";
+		echo"<th>Person Name</th>";
+		echo"<th>Person User ID</th>";
+		echo"<th>Person Passward</th>";
+		echo"<th>Person Phone</th>";
+		echo"<th>Person Age</th>";
+		echo"<th>Person Sex</th>";
+		echo"<th>Person Description</th>";
+		echo"<th>Person Bank Account</th>";
+		//echo"<th>Person UserName</th>";
+		echo"</tr>";
+ 
+
+ while($person=mysqli_fetch_assoc($records))
+ {
+ 	echo "<tr>";
+	echo "<td>".$person['Per_ID']."</td>";
+	echo "<td>".$person['User_id']."</td>";
+	echo "<td>".$person['PersonName']."</td>";
+	echo "<td>".$person['Person_Userid']."</td>";
+	echo "<td>".$person['Person_Password']."</td>";
+	echo "<td>".$person['PerPhone']."</td>";
+	echo "<td>".$person['Age']."</td>";
+	echo "<td>".$person['Sex']."</td>";
+	echo "<td>".$person['Description']."</td>";
+	echo "<td>".$person['Bank_acc']."</td>";
+	//echo "<td>".$person['Username']."</td>";
+	
+	echo "</tr";
+	echo"<br>";
+
+
+}
+echo "</table>";
+			}
+		?>
+
+
+	</div>
+
+<body>
+
+	
+
+</body>
+
+</section>
+
+
+<?php
+	include 'footer.php';
+?>
